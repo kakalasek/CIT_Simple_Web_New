@@ -5,6 +5,7 @@ from sqlalchemy.types import Text, String
 from dotenv import load_dotenv
 import os
 from wtforms import Form, StringField, SubmitField, validators
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 load_dotenv()
 
@@ -31,6 +32,10 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all()
+
+app.wsgi_app = ProxyFix(
+    app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
+)
 
 comments = []
 
@@ -70,3 +75,6 @@ def page():
         return redirect(url_for('page')), 302
 
     return render_template("page.html", blogform=blogform, comments=comments), 200
+
+if __name__ == "__main__":
+    app.run()
