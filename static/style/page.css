@@ -53,6 +53,6 @@ body{
     border-bottom: 2px dotted black;
 }
 
-.comment-content{
+.comment-text{
     overflow-wrap: break-word;
 }

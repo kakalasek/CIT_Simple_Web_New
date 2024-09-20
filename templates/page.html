@@ -16,23 +16,27 @@
                 Why OOP Sucks?
             </div>
             <div class="blog-form">
-                <form id="blogform">
-                    <label for="comment-txt">Text</label>
-                    <input type="text" class="comment-txt" name="comment-txt" id="text">
-                    <label for="comment-usr">User</label>
-                    <input type="text" class="commment-usr" name="comment-usr" id="user">
-                    <input type="submit" value="Post">
+                <form id="blogform" method="post">
+                    {{ blogform.user.label }}
+                    {{ blogform.user }}
+                    {{ blogform.text.label }}
+                    {{ blogform.text }}
+                    {{ blogform.submit }}
                 </form>
             </div>
-            <div class="comments" id="comments">
+            <div class="comments">
                 {% for comment in comments %}
-
+                    <div class="comment">
+                        <div class="comment-user">
+                            {{comment["user"]}}
+                        </div>
+                        <div class="comment-text">
+                            {{comment["text"]}}
+                        </div>
+                    </div>
                 {% endfor %}
-                <div class="comment">
-                </div>
             </div>
         </div>
     </div>
-    <script src="page.js"></script> 
 </body>
 </html>
