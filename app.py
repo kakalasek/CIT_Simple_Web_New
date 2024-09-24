@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 import os
 from wtforms import Form, StringField, SubmitField, validators
 from werkzeug.middleware.proxy_fix import ProxyFix
+import cryptography
 
 load_dotenv()
 
